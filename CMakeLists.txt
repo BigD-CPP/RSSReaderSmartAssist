@@ -1,34 +1,25 @@
-﻿# CMakeList.txt : CMake project for RSSReaderSmartAssist, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required(VERSION 3.10)
 
-set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
+project(RSSReaderSmartAssist)
 
-#name of project : RSSReaderSmartAssist
-project ("RSSReaderSmartAssist")
-message(STATUS "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
-message(STATUS "PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
-message(STATUS "PROJECT_BINARY_DIR: ${PROJECT_BINARY_DIR}")
-
-add_subdirectory(external/curl)
-
-# Add source to this project's executable.
-add_executable(RSSReaderSmartAssist ${SRC_DIR}/RSSReaderSmartAssist.cpp)
+set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "" FORCE)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-project(RSSReaderSmartAssist VERSION 1.0)
+include_directories(include)
 
-#create version file 
-configure_file(
-	${SRC_DIR}/RSSReaderSmartAssistConfig.in 
-	${PROJECT_BINARY_DIR}/RSSReaderSmartAssistConfig
-)
+add_executable(RSSReaderSmartAssist src/main.cpp src/RSSreader.cpp src/Constant.cpp)
+find_package(CURL REQUIRED)
+find_package(tinyxml2 CONFIG REQUIRED)
 
-target_link_libraries(RSSReaderSmartAssist curl)
 target_include_directories(RSSReaderSmartAssist PRIVATE 
 	${CURL_INCLUDE_DIRS}
-	${PROJECT_BINARY_DIR}	
+	${tinyxml2_INCLUDE_DIRS}
+)
+
+target_link_libraries(RSSReaderSmartAssist PRIVATE
+	${CURL_LIBRARIES}
+	${tinyxml2_LIBRARIES}
+	tinyxml2::tinyxml2
 )

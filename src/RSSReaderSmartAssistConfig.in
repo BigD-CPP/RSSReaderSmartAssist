@@ -1,3 +1,0 @@
-// the configured options and settings for RSSReaderSmartAssist
-#define RSSReaderSmartAssist_VERSION_MAJOR @RSSReaderSmartAssist_VERSION_MAJOR@
-#define RSSReaderSmartAssist_VERSION_MINOR @RSSReaderSmartAssist_VERSION_MINOR@
