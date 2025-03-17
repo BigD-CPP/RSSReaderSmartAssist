@@ -1,6 +1,6 @@
 #include "utility/Logger.h"
 
-extern CLogger* mLoggerIns;
+CLogger* mLoggerIns;
 
 CLogger::CLogger()
 {

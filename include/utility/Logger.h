@@ -33,4 +33,5 @@ private:
 };
 
 extern CLogger* mLoggerIns;
+
 #endif
