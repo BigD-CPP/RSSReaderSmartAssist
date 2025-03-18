@@ -20,6 +20,9 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 find_package(CURL REQUIRED)
 find_package(tinyxml2 CONFIG REQUIRED)
 
+#this is for update c++ version in __cplusplus
+target_compile_options(RSSReaderSmartAssist PUBLIC "/Zc:__cplusplus")
+
 target_include_directories(RSSReaderSmartAssist PUBLIC 
 	${CURL_INCLUDE_DIRS}
 	${tinyxml2_INCLUDE_DIRS}

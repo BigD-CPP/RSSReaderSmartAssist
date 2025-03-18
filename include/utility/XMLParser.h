@@ -11,6 +11,8 @@ public:
 	CXMLParser(char* _doc_buffer, string _root_name);
 	~CXMLParser();
 	
+	bool save(string _file_path);
+
 	bool get_tag(string _tags, string& _output);
 
 	bool get_muliple_tag(string _tags, vector<string>& _output);
@@ -23,8 +25,9 @@ public:
 
 private:
 	bool load(bool is_fileParseEnable = true);
-	bool get_same_tag(tinyxml2::XMLElement* base_element, string _tag, vector<string> _output);
-	bool get_same_tag(tinyxml2::XMLElement* base_element, string _tag, vector<CRSSItems> _output);
+	bool get_same_tag(tinyxml2::XMLElement* base_element, string _tag, vector<string>& _output);
+	bool get_same_tag(tinyxml2::XMLElement* base_element, string _tag, vector<CRSSItems>& _output);
+
 
 
 	tinyxml2::XMLDocument doc;

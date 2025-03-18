@@ -16,9 +16,9 @@ void CLogger::log(string header, string message, bool wfile_enable, LogTypeEnum 
 	auto time_t_now = system_clock::to_time_t(now);  // Convert to time_t
 	auto timeInfo = localtime(&time_t_now);
 
-	cout << timeInfo->tm_hour << ":"
-		<< timeInfo->tm_min << ":"
-		<< timeInfo->tm_sec
+	cout << std::setfill('0') << std::setw(2) << timeInfo->tm_hour << ":"
+		<< std::setfill('0') << std::setw(2) << timeInfo->tm_min << ":"
+		<< std::setfill('0') << std::setw(2) << timeInfo->tm_sec
 		<< " " << LogTypeEnum_str[err_type] << " | "
 		<< header << " | "
 		<< message
@@ -39,6 +39,7 @@ void CLogger::wlog(string header, string message, bool wfile_enable)
 void CLogger::elog(string header, string message, bool wfile_enable)
 {
 	log(header, message, wfile_enable, LT_ERROR);
+	throw runtime_error(message);
 }
 
 void CLogger::ilog(string header, string message, bool wfile_enable)
